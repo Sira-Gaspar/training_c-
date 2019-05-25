@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace addressbook_test_Sira
 {
-    class AccountData
+    public class AccountData
     {
         private string username;
         private string password;
