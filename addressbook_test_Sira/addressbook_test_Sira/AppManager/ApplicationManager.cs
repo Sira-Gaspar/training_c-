@@ -51,6 +51,17 @@ namespace addressbook_test_Sira
         {
             get { return loginHelper; }
         }
+        //public LoginHelper Auth2
+        //{
+        //    get
+        //    {
+        //        if (loginHelper == null)
+        //        {
+        //            loginHelper = new LoginHelper(this);
+        //        }
+        //        return loginHelper;
+        //    }
+        //}
         public NavigationHelper Navigator
         {
             get { return navigator; }

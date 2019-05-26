@@ -15,12 +15,63 @@ namespace addressbook_test_Sira
         public ContactHelper(ApplicationManager manager) : base(manager)
         { }
 
+        
         public ContactHelper Create(ContactData contact)
         {
             AddNewContact();
             FillContactForm(contact);
             SubmitContactCreation();
             manager.Navigator.ReturnToHomePage();
+            return this;
+        }
+
+        public ContactHelper Modification(int p, ContactData newData)
+        {
+            SelectContact(p);
+            InitContactModification();
+            FillContactForm(newData);
+            SubmitContactModification();
+            manager.Navigator.ReturnToHomePage();
+            return this;
+        }
+
+        public ContactHelper Remove(int p)
+        {
+            SelectContact(p);
+            RemoveContact();
+            SubmitContactRemoval();
+            manager.Navigator.ReturnToHomePage();
+            return this;
+        }
+
+        public ContactHelper SubmitContactRemoval()
+        {
+            driver.SwitchTo().Alert().Accept();
+            return this;
+        }
+
+        public ContactHelper RemoveContact()
+        {
+            driver.FindElement(By.XPath("//input[@value='Delete']")).Click();
+            return this;
+        }
+
+        public ContactHelper InitContactModification()
+        {
+            driver.FindElement(By.XPath("//img[@alt='Edit']")).Click();
+            return this;
+        }
+
+        public ContactHelper SubmitContactModification()
+        {
+            driver.FindElement(By.XPath("(//input[@name='update'])[2]")).Click();
+            return this;
+        }
+
+        public ContactHelper SelectContact(int index)
+        {
+            //driver.FindElement(By.Id("1")).Click();
+            driver.FindElement(By.XPath("(//input[@name='selected[]'])[" + index + "]")).Click();
             return this;
         }
 

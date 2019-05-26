@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.UI;
+
 namespace addressbook_test_Sira
 {
     public class GroupHelper : HelperBase
@@ -13,15 +14,26 @@ namespace addressbook_test_Sira
         public GroupHelper(ApplicationManager manager) : base(manager)
         {}
 
-        public GroupHelper Remove(int v)
+        public GroupHelper Remove(int p)
         {
             manager.Navigator.GoToGroupsPage();
-            SelectGroup(1);
+            SelectGroup(p);
             RemoveGroup();
             ReturnToGroupPage();
             return this;
         }
 
+        public GroupHelper Modify(int p, GroupData newData)
+        {
+            manager.Navigator.GoToGroupsPage();
+            SelectGroup(p);
+            InitGroupModification();
+            FillGroupForm(newData);
+            SubmitGroupModification();
+            ReturnToGroupPage();
+            return this;
+        }
+        
         public GroupHelper Create(GroupData group)
         {
             manager.Navigator.GoToGroupsPage();
@@ -68,6 +80,18 @@ namespace addressbook_test_Sira
         public GroupHelper SelectGroup(int index)
         {
             driver.FindElement(By.XPath("(//input[@name='selected[]'])[" + index + "]")).Click();
+            return this;
+        }
+
+        public GroupHelper SubmitGroupModification()
+        {
+            driver.FindElement(By.Name("update")).Click();
+            return this;
+        }
+
+        public GroupHelper InitGroupModification()
+        {
+            driver.FindElement(By.Name("edit")).Click(); 
             return this;
         }
     }

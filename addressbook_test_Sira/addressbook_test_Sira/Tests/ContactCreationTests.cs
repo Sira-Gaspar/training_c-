@@ -7,14 +7,13 @@ using NUnit.Framework;
 namespace addressbook_test_Sira
 {
     [TestFixture]
-    public class ContactCreationTest : TestBase
+    public class ContactCreationTests : TestBase
     {
         [Test]
         public void TestContactCreation()
         {
             ContactData contact = new ContactData("SSS", "QQQ");
             app.Contacts.Create(contact);
-            app.Auth.Logout();
         }         
     }
 }

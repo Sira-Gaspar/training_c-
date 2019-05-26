@@ -16,7 +16,6 @@ namespace addressbook_test_Sira
             group.Header = "aaa";
             group.Footer = "ddd";
             app.Groups.Create(group);
-            app.Auth.Logout();
         }          
     }
 }

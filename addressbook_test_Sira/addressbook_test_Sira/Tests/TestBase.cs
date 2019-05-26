@@ -22,6 +22,7 @@ namespace addressbook_test_Sira
         [TearDown]
         public void TeardownTest()
         {
+            app.Auth.Logout();
             app.Stop();
         }          
     }

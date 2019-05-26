@@ -27,7 +27,7 @@ namespace addressbook_test_Sira
         }
         public void ReturnToHomePage()
         {
-            driver.FindElement(By.LinkText("home page")).Click();
+            driver.FindElement(By.LinkText("home")).Click();
         }
     }
 }
