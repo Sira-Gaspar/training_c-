@@ -27,8 +27,7 @@ namespace addressbook_test_Sira
 
         public ContactHelper Modification(int p, ContactData newData)
         {
-            SelectContact(p);
-            InitContactModification();
+            InitContactModification(p);
             FillContactForm(newData);
             SubmitContactModification();
             manager.Navigator.ReturnToHomePage();
@@ -56,9 +55,9 @@ namespace addressbook_test_Sira
             return this;
         }
 
-        public ContactHelper InitContactModification()
+        public ContactHelper InitContactModification(int index)
         {
-            driver.FindElement(By.XPath("//img[@alt='Edit']")).Click();
+            driver.FindElement(By.XPath("(//img[@alt='Edit'])[" + index + "]")).Click();
             return this;
         }
 
@@ -70,7 +69,6 @@ namespace addressbook_test_Sira
 
         public ContactHelper SelectContact(int index)
         {
-            //driver.FindElement(By.Id("1")).Click();
             driver.FindElement(By.XPath("(//input[@name='selected[]'])[" + index + "]")).Click();
             return this;
         }
@@ -82,12 +80,8 @@ namespace addressbook_test_Sira
         }
         public ContactHelper FillContactForm(ContactData contact)
         {
-            driver.FindElement(By.Name("firstname")).Click();
-            driver.FindElement(By.Name("firstname")).Clear();
-            driver.FindElement(By.Name("firstname")).SendKeys(contact.FirstName);
-            driver.FindElement(By.Name("lastname")).Click();
-            driver.FindElement(By.Name("lastname")).Clear();
-            driver.FindElement(By.Name("lastname")).SendKeys(contact.LastName);
+            Type(By.Name("firstname"), contact.FirstName);
+            Type(By.Name("lastname"), contact.LastName);
             return this;
 
         }

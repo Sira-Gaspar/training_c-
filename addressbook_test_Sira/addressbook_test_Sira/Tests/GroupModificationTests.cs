@@ -13,8 +13,8 @@ namespace addressbook_test_Sira
         public void GroupModificationTest()
         {
             GroupData newData = new GroupData("vvv");
-            newData.Header = "fff";
-            newData.Footer = "yyy";
+            newData.Header = null;
+            newData.Footer = null;
             app.Groups.Modify(1, newData);
         }
     }
