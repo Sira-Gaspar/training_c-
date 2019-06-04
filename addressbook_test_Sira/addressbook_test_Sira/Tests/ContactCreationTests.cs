@@ -7,7 +7,7 @@ using NUnit.Framework;
 namespace addressbook_test_Sira
 {
     [TestFixture]
-    public class ContactCreationTests : TestBase
+    public class ContactCreationTests : AuthTestBase
     {
         [Test]
         public void TestContactCreation()

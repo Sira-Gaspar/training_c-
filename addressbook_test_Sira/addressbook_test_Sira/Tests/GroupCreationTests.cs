@@ -7,7 +7,7 @@ using NUnit.Framework;
 namespace addressbook_test_Sira
 {
     [TestFixture]
-    public class GroupCreationTests : TestBase
+    public class GroupCreationTests : AuthTestBase
     {
         [Test]
         public void GroupCreationTest()

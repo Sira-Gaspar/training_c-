@@ -17,6 +17,13 @@ namespace addressbook_test_Sira
         public GroupHelper Remove(int p)
         {
             manager.Navigator.GoToGroupsPage();
+            if (!IsElementPresent(By.Name("selected[]")))
+            {
+                GroupData group = new GroupData("SSS");
+                group.Header = "aaa";
+                group.Footer = "ddd";
+                Create(group);
+            }
             SelectGroup(p);
             RemoveGroup();
             ReturnToGroupPage();
@@ -26,6 +33,13 @@ namespace addressbook_test_Sira
         public GroupHelper Modify(int p, GroupData newData)
         {
             manager.Navigator.GoToGroupsPage();
+            if (!IsElementPresent(By.Name("selected[]")))
+            {
+                GroupData group = new GroupData("SSS");
+                group.Header = "aaa";
+                group.Footer = "ddd";
+                Create(group);
+            }
             SelectGroup(p);
             InitGroupModification();
             FillGroupForm(newData);
