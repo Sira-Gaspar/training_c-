@@ -12,6 +12,7 @@ namespace addressbook_test_Sira
         [Test]
         public void TestContactModification()
         {
+            app.Contacts.IsContactExist();
             ContactData newData = new ContactData("ppp", null);
             app.Contacts.Modification(2, newData);
         }

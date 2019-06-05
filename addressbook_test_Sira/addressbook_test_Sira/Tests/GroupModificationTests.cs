@@ -12,6 +12,7 @@ namespace addressbook_test_Sira
         [Test]
         public void GroupModificationTest()
         {
+            app.Groups.IsGroupExist();
             GroupData newData = new GroupData("vvv");
             newData.Header = null;
             newData.Footer = null;

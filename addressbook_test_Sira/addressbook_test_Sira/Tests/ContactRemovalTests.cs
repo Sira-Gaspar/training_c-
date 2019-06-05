@@ -12,6 +12,7 @@ namespace addressbook_test_Sira
         [Test]
         public void ContactRemovalTest()
         {
+            app.Contacts.IsContactExist();
             app.Contacts.Remove(1);
         }
 

@@ -27,11 +27,7 @@ namespace addressbook_test_Sira
 
         public ContactHelper Modification(int p, ContactData newData)
         {
-            if (! IsElementPresent(By.Name("selected[]")))
-            {
-                ContactData contact = new ContactData("SSS", "QQQ");
-                Create(contact);
-            }
+            IsContactExist();
             InitContactModification(p);
             FillContactForm(newData);
             SubmitContactModification();
@@ -41,11 +37,6 @@ namespace addressbook_test_Sira
 
         public ContactHelper Remove(int p)
         {
-            if (!IsElementPresent(By.Name("selected[]")))
-            {
-                ContactData contact = new ContactData("SSS", "QQQ");
-                Create(contact);
-            }
             SelectContact(p);
             RemoveContact();
             SubmitContactRemoval();
@@ -68,7 +59,6 @@ namespace addressbook_test_Sira
         public ContactHelper InitContactModification(int index)
         {
             driver.FindElement(By.CssSelector("img[alt=\"Edit\"]")).Click();
-            //driver.FindElement(By.XPath("(//img[@alt='Edit'])[" + index + "]")).Click();
             return this;
         }
 
@@ -101,6 +91,16 @@ namespace addressbook_test_Sira
             driver.FindElement(By.XPath("(//input[@name='submit'])[2]")).Click();
             return this;
 
+        }
+
+        public ContactHelper IsContactExist()
+        {
+            if (!IsElementPresent(By.Name("selected[]")))
+            {
+                ContactData contact = new ContactData("SSS", "QQQ");
+                Create(contact);
+            }
+            return this;
         }
     }
 }

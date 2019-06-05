@@ -12,6 +12,7 @@ namespace addressbook_test_Sira
         [Test]
         public void GroupRemovalTest()
         {
+            app.Groups.IsGroupExist();
             app.Groups.Remove(1);
         }                       
     }
