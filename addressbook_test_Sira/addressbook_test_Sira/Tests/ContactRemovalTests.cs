@@ -3,6 +3,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 using NUnit.Framework;
+using System.Collections.Generic;
 
 namespace addressbook_test_Sira
 {
@@ -13,7 +14,13 @@ namespace addressbook_test_Sira
         public void ContactRemovalTest()
         {
             app.Contacts.IsContactExist();
-            app.Contacts.Remove(1);
+            List<ContactData> oldContacts = app.Contacts.GetContactList();
+            app.Contacts.Remove(0);
+            List<ContactData> newContacts = app.Contacts.GetContactList();
+            oldContacts.RemoveAt(0);
+            oldContacts.Sort();
+            newContacts.Sort();
+            Assert.AreEqual(oldContacts, newContacts);
         }
 
     }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace addressbook_test_Sira
 {
-    public class ContactData
+    public class ContactData : IEquatable<ContactData>, IComparable<ContactData>
     {
         private string first_name;
         private string last_name;
@@ -33,6 +33,42 @@ namespace addressbook_test_Sira
         {
             get { return last_name; }
             set { last_name = value; }
+        }
+
+        public int CompareTo(ContactData other)
+        {
+            if (Object.ReferenceEquals(other, null))
+            {
+                return 1;
+            }
+            return LastName.CompareTo(other.LastName) + FirstName.CompareTo(other.FirstName);
+        }
+
+        public bool Equals(ContactData other)
+        {
+            if (Object.ReferenceEquals(other, null))
+            {
+                return false;
+            }
+            if (Object.ReferenceEquals(this, other))
+            {
+                return true;
+            }
+            if (LastName == other.LastName && FirstName == other.FirstName)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public override int GetHashCode()
+        {
+            return LastName.GetHashCode() + FirstName.GetHashCode();
+        }
+
+        public override string ToString()
+        {
+            return LastName + FirstName;
         }
     }
 }

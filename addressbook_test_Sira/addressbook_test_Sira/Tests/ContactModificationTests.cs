@@ -3,6 +3,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 using NUnit.Framework;
+using System.Collections.Generic;
 
 namespace addressbook_test_Sira
 {
@@ -13,8 +14,15 @@ namespace addressbook_test_Sira
         public void TestContactModification()
         {
             app.Contacts.IsContactExist();
-            ContactData newData = new ContactData("ppp", null);
-            app.Contacts.Modification(2, newData);
+            ContactData newData = new ContactData("SSS", "ppp");
+            List<ContactData> oldContacts = app.Contacts.GetContactList();
+            app.Contacts.Modification(0, newData);
+            List<ContactData> newContacts = app.Contacts.GetContactList();
+            oldContacts[0].LastName = newData.LastName;
+            oldContacts[0].FirstName = newData.FirstName;
+            oldContacts.Sort();
+            newContacts.Sort();
+            Assert.AreEqual(oldContacts, newContacts);
         }
 
     }
