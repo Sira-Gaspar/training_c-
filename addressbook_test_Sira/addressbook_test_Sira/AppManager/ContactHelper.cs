@@ -47,6 +47,7 @@ namespace addressbook_test_Sira
         public ContactHelper SubmitContactRemoval()
         {
             driver.SwitchTo().Alert().Accept();
+            contactCache = null;
             return this;
         }
 
@@ -65,6 +66,7 @@ namespace addressbook_test_Sira
         public ContactHelper SubmitContactModification()
         {
             driver.FindElement(By.XPath("(//input[@name='update'])[2]")).Click();
+            contactCache = null;
             return this;
         }
 
@@ -89,6 +91,7 @@ namespace addressbook_test_Sira
         public ContactHelper SubmitContactCreation()
         {
             driver.FindElement(By.XPath("(//input[@name='submit'])[2]")).Click();
+            contactCache = null;
             return this;
 
         }
@@ -103,20 +106,29 @@ namespace addressbook_test_Sira
             return this;
         }
 
+        private List<ContactData> contactCache = null;
+
         public List<ContactData> GetContactList()
         {
-            List<ContactData> contacts = new List<ContactData>();
-            manager.Navigator.ReturnToHomePage();
-            ICollection<IWebElement> elements = driver.FindElements(By.Name("entry"));
-            foreach (IWebElement element in elements)
+            if (contactCache == null)
             {
-                //contacts.Add(new ContactData(last_name.Text, first_name.Text));
-                contacts.Add(new ContactData(element.FindElement(By.XPath(".//td[3]")).Text, element.FindElement(By.XPath(".//td[2]")).Text));
+                contactCache = new List<ContactData>();
+                manager.Navigator.ReturnToHomePage();
+                ICollection<IWebElement> elements = driver.FindElements(By.Name("entry"));
+                foreach (IWebElement element in elements)
+                {
+                    contactCache.Add(new ContactData(element.FindElement(By.XPath(".//td[3]")).Text, element.FindElement(By.XPath(".//td[2]")).Text));
 
+                }
             }
-            //return contacts;
-            System.Console.Out.Write(contacts);
-            return contacts;
+            System.Console.Out.Write(contactCache);
+            return new List<ContactData>(contactCache);
         }
+
+        public int GetContactsCount()
+        {
+            return driver.FindElements(By.Name("entry")).Count;
+        }
+
     }
 }

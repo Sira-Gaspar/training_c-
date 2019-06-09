@@ -16,6 +16,7 @@ namespace addressbook_test_Sira
             ContactData contact = new ContactData("SSS", "QQQ");
             List<ContactData> oldContacts = app.Contacts.GetContactList();
             app.Contacts.Create(contact);
+            Assert.AreEqual(oldContacts.Count + 1, app.Contacts.GetContactsCount());
             List<ContactData> newContacts = app.Contacts.GetContactList();
             oldContacts.Add(contact);
             oldContacts.Sort();

@@ -17,6 +17,7 @@ namespace addressbook_test_Sira
             ContactData newData = new ContactData("SSS", "ppp");
             List<ContactData> oldContacts = app.Contacts.GetContactList();
             app.Contacts.Modification(0, newData);
+            Assert.AreEqual(oldContacts.Count, app.Contacts.GetContactsCount());
             List<ContactData> newContacts = app.Contacts.GetContactList();
             oldContacts[0].LastName = newData.LastName;
             oldContacts[0].FirstName = newData.FirstName;
