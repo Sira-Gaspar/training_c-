@@ -41,7 +41,12 @@ namespace addressbook_test_Sira
             {
                 return 1;
             }
-            return LastName.CompareTo(other.LastName) + FirstName.CompareTo(other.FirstName);
+
+            if (LastName.CompareTo(other.LastName) == 0) //сравниваем фамилии, потом уже имена
+            {
+                return FirstName.CompareTo(other.FirstName);
+            }
+            return LastName.CompareTo(other.LastName);
         }
 
         public bool Equals(ContactData other)
