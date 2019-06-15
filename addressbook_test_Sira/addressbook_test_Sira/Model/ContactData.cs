@@ -3,36 +3,57 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 
 namespace addressbook_test_Sira
 {
     public class ContactData : IEquatable<ContactData>, IComparable<ContactData>
     {
-        private string first_name;
-        private string last_name;
-        private string middle_name = "";
-                  
+        private string allPhones;
+
         public ContactData(string first_name, string last_name)
         {
-            this.first_name = first_name;
-            this.last_name = last_name;
+            FirstName = first_name;
+            LastName = last_name;
         }
-        public ContactData(string first_name, string last_name, string middle_name)
-        {
-            this.first_name = first_name;
-            this.last_name = last_name;
-            this.middle_name = middle_name;
+
+        public string FirstName { get; set; }
+               
+        public string LastName { get; set; }
+
+        public string MiddleName { get; set; }
+
+        public string Address { get; set; }
+
+        public string MobilePhone { get; set; }
+
+        public string WorkPhone { get; set; }
+
+        public string HomePhone { get; set; }
+
+        public string AllPhones {
+            get {
+                if (allPhones != null)
+                {
+                    return allPhones;
+                }
+                else
+                {
+                    return (CleanUp(HomePhone) + CleanUp(MobilePhone) + CleanUp(WorkPhone)).Trim();
+                }
+            }
+            set {
+                allPhones = value;
+            }
         }
-        public string FirstName
+
+        private string CleanUp(string phone)
         {
-            get { return first_name; }
-            set { first_name = value; }
-        }
-       
-        public string LastName
-        {
-            get { return last_name; }
-            set { last_name = value; }
+            if (phone == null || phone == "")
+            {
+                return "";
+            }
+            return Regex.Replace(phone, "[ -()]", "") + "\r\n";
         }
 
         public int CompareTo(ContactData other)
