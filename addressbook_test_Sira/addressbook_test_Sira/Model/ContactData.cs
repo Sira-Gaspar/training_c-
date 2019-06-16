@@ -10,11 +10,17 @@ namespace addressbook_test_Sira
     public class ContactData : IEquatable<ContactData>, IComparable<ContactData>
     {
         private string allPhones;
+        private string allContactInformation;
 
         public ContactData(string first_name, string last_name)
         {
             FirstName = first_name;
             LastName = last_name;
+        }
+
+        public ContactData(string first_name)
+        {
+            FirstName = first_name;
         }
 
         public string FirstName { get; set; }
@@ -47,13 +53,32 @@ namespace addressbook_test_Sira
             }
         }
 
+        public string AllContactInfo {
+            get
+            {
+                if (allContactInformation != null)
+                {
+                    return allContactInformation;
+                }
+                else
+                {
+                    return (FirstName + " " + LastName + "\r\n" + "\r\n" + "H: " + HomePhone + "\r\n"
+                        + "M: " + MobilePhone + "\r\n" + "W: " + WorkPhone).Trim();
+                }
+            }
+            set
+            {
+                allContactInformation = value;
+            }
+        }
+
         private string CleanUp(string phone)
         {
             if (phone == null || phone == "")
             {
                 return "";
             }
-            return Regex.Replace(phone, "[ -()]", "") + "\r\n";
+            return Regex.Replace(phone, "[- ()]", "") + "\r\n";
         }
 
         public int CompareTo(ContactData other)

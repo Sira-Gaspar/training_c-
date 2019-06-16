@@ -19,5 +19,14 @@ namespace addressbook_test_Sira
             Assert.AreEqual(fromTable.Address, fromForm.Address);
             Assert.AreEqual(fromTable.AllPhones, fromForm.AllPhones);
         }
+
+        [Test]
+        public void TestContactInformationDetails()
+        {
+            ContactData fromDetails = app.Contacts.GetContactInformationFromDetails(0);
+            ContactData fromForm = app.Contacts.GetContactInformationFromEditForm(0);
+            //Проверки:
+            Assert.AreEqual(fromDetails.AllContactInfo, fromForm.AllContactInfo);
+        }
     }
 }

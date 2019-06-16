@@ -62,7 +62,7 @@ namespace addressbook_test_Sira
             driver.FindElement(By.CssSelector("img[alt=\"Edit\"]")).Click();
             return this;
         }
-
+        
         public ContactHelper SubmitContactModification()
         {
             driver.FindElement(By.XPath("(//input[@name='update'])[2]")).Click();
@@ -86,14 +86,12 @@ namespace addressbook_test_Sira
             Type(By.Name("firstname"), contact.FirstName);
             Type(By.Name("lastname"), contact.LastName);
             return this;
-
         }
         public ContactHelper SubmitContactCreation()
         {
             driver.FindElement(By.XPath("(//input[@name='submit'])[2]")).Click();
             contactCache = null;
             return this;
-
         }
 
         public ContactHelper IsContactExist()
@@ -165,6 +163,24 @@ namespace addressbook_test_Sira
                 MobilePhone = mobilePhone,
                 WorkPhone = workPhone
             };
+        }
+
+        public ContactData GetContactInformationFromDetails(int index)
+        {
+            manager.Navigator.GoToHomePage();
+            OpenContactDetails(0);
+            string allContactInformation = driver.FindElement(By.CssSelector("div[id='content']")).Text;
+
+            return new ContactData(allContactInformation)
+            {
+                AllContactInfo = allContactInformation
+            };
+        }
+
+        public ContactHelper OpenContactDetails(int index)
+        {
+            driver.FindElement(By.CssSelector("img[alt=\"Details\"]")).Click();
+            return this;
         }
     }
 }
