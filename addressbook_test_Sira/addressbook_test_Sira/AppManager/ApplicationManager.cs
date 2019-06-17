@@ -7,6 +7,7 @@ using System.Threading;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.UI;
+using System.IO;
 
 namespace addressbook_test_Sira
 {
@@ -23,7 +24,9 @@ namespace addressbook_test_Sira
 
         private ApplicationManager()
         {
-            driver = new FirefoxDriver();
+            //var test = Environment.CurrentDirectory;
+            //var test2 = 
+            driver = new FirefoxDriver(Environment.CurrentDirectory);
             baseURL = "http://localhost/addressbook/";
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(3);
 

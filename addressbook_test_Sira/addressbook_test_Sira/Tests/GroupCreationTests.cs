@@ -15,10 +15,10 @@ namespace addressbook_test_Sira
             List<GroupData> groups = new List<GroupData>();
             for (int i = 0; i < 5; i++)
             {
-                groups.Add(new GroupData(GenerateRandomString(30))
+                groups.Add(new GroupData(GenerateRandomString(10))
                 {
-                    Header = GenerateRandomString(100),
-                    Footer = GenerateRandomString(100),
+                    Header = GenerateRandomString(10),
+                    Footer = GenerateRandomString(10),
                 });
             }
             return groups;

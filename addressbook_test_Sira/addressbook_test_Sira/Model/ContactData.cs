@@ -11,6 +11,7 @@ namespace addressbook_test_Sira
     {
         private string allPhones;
         private string allContactInformation;
+        private string allEmais;
 
         public ContactData(string first_name, string last_name)
         {
@@ -37,6 +38,12 @@ namespace addressbook_test_Sira
 
         public string HomePhone { get; set; }
 
+        public string Email1 { get; set; }
+
+        public string Email2 { get; set; }
+
+        public string Email3 { get; set; }
+
         public string AllPhones {
             get {
                 if (allPhones != null)
@@ -53,6 +60,25 @@ namespace addressbook_test_Sira
             }
         }
 
+        public string AllEmails
+        {
+            get
+            {
+                if (allEmais != null)
+                {
+                    return allEmais;
+                }
+                else
+                {
+                    return (CleanUp(Email1) + CleanUp(Email2) + CleanUp(Email3)).Trim();
+                }
+            }
+            set
+            {
+                allEmais = value;
+            }
+        }
+
         public string AllContactInfo {
             get
             {
@@ -62,8 +88,8 @@ namespace addressbook_test_Sira
                 }
                 else
                 {
-                    return (FirstName + " " + LastName + "\r\n" + "\r\n" + "H: " + HomePhone + "\r\n"
-                        + "M: " + MobilePhone + "\r\n" + "W: " + WorkPhone).Trim();
+                    return (FirstName + " " + LastName + "\r\n" + "\r\n" + "H:" + HomePhone + "\r\n"
+                        + "M:" + MobilePhone + "\r\n" + "W:" + WorkPhone).Trim();
                 }
             }
             set
@@ -78,7 +104,7 @@ namespace addressbook_test_Sira
             {
                 return "";
             }
-            return Regex.Replace(phone, "[- ()]", "") + "\r\n";
+            return Regex.Replace(phone, "[ ()-]", "") + "\r\n";
         }
 
         public int CompareTo(ContactData other)
