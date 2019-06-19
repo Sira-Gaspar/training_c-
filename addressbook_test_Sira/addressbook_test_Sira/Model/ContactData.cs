@@ -88,8 +88,54 @@ namespace addressbook_test_Sira
                 }
                 else
                 {
-                    return (FirstName + " " + LastName + "\r\n" + "\r\n" + "H:" + HomePhone + "\r\n"
-                        + "M:" + MobilePhone + "\r\n" + "W:" + WorkPhone).Trim();
+                    if (FirstName != "")
+                    {
+                       allContactInformation += FirstName;
+                    }
+                    else FirstName = null;
+
+                    if (HomePhone != "")
+                    {
+                        allContactInformation += " " + LastName;
+                    }
+                    else HomePhone = null;
+
+                    if (HomePhone != "")
+                    {
+                        allContactInformation += "\r\n\r\n" + "H: " + HomePhone;
+                    }
+                    else HomePhone = null;
+
+                    if (MobilePhone != "")
+                    {
+                        allContactInformation += "\r\n" + "M: " + MobilePhone;
+                    }
+                    else MobilePhone = null;
+
+                    if (WorkPhone != "")
+                    {
+                        allContactInformation += "\r\n" + "W: " + WorkPhone;
+                    }
+                    else WorkPhone = null;
+
+                    if (Email1 != null)
+                    {
+                        allContactInformation += "\r\n\r\n" + Email1;
+                    }
+
+                    if (Email2 != null)
+                    {
+                        return allContactInformation += "\r\n" + Email2;
+                    }
+
+                    if (Email3 != null)
+                    {
+                        return allContactInformation += "\r\n" + Email3;
+                    }
+
+                    //return (FirstName + " " + LastName + "\r\n" + "\r\n" + "H:" + HomePhone + "\r\n"
+                    // + "M:" + MobilePhone + "\r\n" + "W:" + WorkPhone).Trim();
+                    return allContactInformation.Trim();
                 }
             }
             set
