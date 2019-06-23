@@ -13,6 +13,8 @@ namespace addressbook_test_Sira
         private string allContactInformation;
         private string allEmais;
 
+        public ContactData() {}
+
         public ContactData(string first_name, string last_name)
         {
             FirstName = first_name;

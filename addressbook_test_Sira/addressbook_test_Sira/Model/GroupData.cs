@@ -8,7 +8,9 @@ namespace addressbook_test_Sira
 {
     public class GroupData : IEquatable<GroupData>, IComparable<GroupData>
     {
-       
+
+        public GroupData() {}
+
         public GroupData(string name)
         {
             Name = name;
