@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using LinqToDB.Mapping;
 
 namespace addressbook_test_Sira
 {
+    [Table(Name = "group_list")]
     public class GroupData : IEquatable<GroupData>, IComparable<GroupData>
     {
 
@@ -16,13 +18,49 @@ namespace addressbook_test_Sira
             Name = name;
         }
 
+        [Column(Name = "group_name")]
         public string Name { get; set; }
-        
+
+        [Column(Name = "group_header")]
         public string Header { get; set; }
 
+        [Column(Name = "group_footer")]
         public string Footer { get; set; }
 
+        [Column(Name = "group_id"), PrimaryKey, Identity]
         public string Id { get; set; }
+
+        public static List<GroupData> GetAllFromDB()
+        {
+            using (AddressBookDB db = new AddressBookDB())
+            {
+                return (from g in db.Groups select g).ToList(); //запрос в БД списка групп
+            }
+        }
+
+        public List<ContactData> GetContact()
+        {
+            using (AddressBookDB db = new AddressBookDB())
+            {
+                return (from c in db.Contacts 
+                        from gcr in db.GCR.Where(p => p.GroupId == Id && p.ContactId == c.Id 
+                        && c.Deprecated == "0000-00-00 00:00:0")
+                        select c).Distinct().ToList(); 
+            }
+        }
+
+        public List<GroupData> GetGroups()
+        {
+            using (AddressBookDB db = new AddressBookDB())
+            {
+                var query = from g in db.Groups
+                            join t in db.GCR on g.Id equals t.GroupId
+                            where t.ContactId == Id
+                            select g;
+
+                return query.Distinct().ToList();
+            }
+        }
 
         public int CompareTo(GroupData other)
         {

@@ -10,6 +10,7 @@ namespace addressbook_test_Sira
     public class TestBase
     {
         protected ApplicationManager app;
+        public static bool RERFORM_LONG_UI_CHECKS = true;
 
         [SetUp]
         public void SetupApplicationManager()

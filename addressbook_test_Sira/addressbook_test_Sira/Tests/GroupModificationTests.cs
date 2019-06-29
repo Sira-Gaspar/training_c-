@@ -8,31 +8,22 @@ using System.Collections.Generic;
 namespace addressbook_test_Sira
 {
     [TestFixture]
-    public class GroupModificationTests : AuthTestBase
+    public class GroupModificationTests : GroupTestBase
     {
         [Test]
         public void GroupModificationTest()
         {
             app.Groups.IsGroupExist();
-            GroupData newData = new GroupData("vvv");
-            newData.Header = null;
-            newData.Footer = null;
-            List<GroupData> oldGroups = app.Groups.GetGroupList();
-            GroupData oldData = oldGroups[0];
-            app.Groups.Modify(0, newData);
-            Assert.AreEqual(oldGroups.Count, app.Groups.GetGroupsCount());
-            List<GroupData> newGroups = app.Groups.GetGroupList();
-            oldGroups[0].Name = newData.Name;
+            GroupData newData = new GroupData("ytx");
+            newData.Header = "hli";
+            newData.Footer = "hlfgh";
+            List<GroupData> oldGroups = GroupData.GetAllFromDB();
+            app.Groups.Modify(oldGroups[6], newData);
+            List<GroupData> newGroups = GroupData.GetAllFromDB();
+            oldGroups[6].Name = newData.Name;
             oldGroups.Sort();
             newGroups.Sort();
             Assert.AreEqual(oldGroups, newGroups);
-            foreach (GroupData group in newGroups)
-            {
-                if (group.Id == oldData.Id)
-                {
-                    Assert.AreEqual(newData.Name, group.Name);
-                }
-            }
         }
     }
 }
