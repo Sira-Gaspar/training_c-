@@ -12,9 +12,28 @@ namespace addressbook_test_Sira
         [Test]
         public void TestDeleteContactFromGroup()
         {
+            app.Contacts.IsContactExist();
+            app.Groups.IsGroupExist();
             GroupData group = GroupData.GetAllFromDB()[9];
+            ContactData contact;
+            if (group == null)
+            {
+                app.Groups.IsGroupExist();
+                group = GroupData.GetAllFromDB()[9];
+            }
+
             List<ContactData> oldList = group.GetContact();
-            ContactData contact = ContactData.GetAllFromDB().First();
+
+            if (group.GetContact().Count == 0)
+            {
+                contact = ContactData.GetAllFromDB()[0];
+                app.Contacts.AddContactToGroup(contact, group);
+            }
+            else
+            {
+                contact = oldList[0]; 
+            }
+            contact = ContactData.GetAllFromDB().First();
             app.Contacts.IsAddedInGroup(contact, oldList, group);
             //действия
             app.Contacts.DeleteContactFromGroup(contact, group);

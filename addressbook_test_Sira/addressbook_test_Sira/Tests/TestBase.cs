@@ -19,15 +19,13 @@ namespace addressbook_test_Sira
             app.Auth.Login(new AccountData("admin", "secret"));
         }
 
-        public static Random rnd = new Random();
-
         public static string GenerateRandomString(int max)
         {
-            int l = Convert.ToInt32(rnd.NextDouble() * max);
+            int l = Convert.ToInt32(new Random().NextDouble() * max);
             StringBuilder builder = new StringBuilder();
             for (int i = 0; i < l; i++)
             {
-                builder.Append(Convert.ToChar(32 + Convert.ToInt32(rnd.NextDouble() * 65)));
+                builder.Append(Convert.ToChar(32 + Convert.ToInt32(new Random().NextDouble() * 65)));
             }
             return builder.ToString();
         }

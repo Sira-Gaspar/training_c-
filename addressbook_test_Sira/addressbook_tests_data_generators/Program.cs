@@ -65,9 +65,9 @@ namespace addressbook_tests_data_generators
                     contacts.Add(new ContactData(TestBase.GenerateRandomString(5), TestBase.GenerateRandomString(5))
                     {
                         Address = TestBase.GenerateRandomString(5),
-                        MobilePhone = Convert.ToString(TestBase.rnd.Next(1111, 9999)),
-                        WorkPhone = Convert.ToString(TestBase.rnd.Next(1111, 9999)),
-                        HomePhone = Convert.ToString(TestBase.rnd.Next(1111, 9999)),
+                        MobilePhone = Convert.ToString(new Random().Next(1111, 9999)),
+                        WorkPhone = Convert.ToString(new Random().Next(1111, 9999)),
+                        HomePhone = Convert.ToString(new Random().Next(1111, 9999)),
                         Email1 = TestBase.GenerateRandomString(5) + "@" + TestBase.GenerateRandomString(5),
                         Email2 = TestBase.GenerateRandomString(5) + "@" + TestBase.GenerateRandomString(5),
                         Email3 = TestBase.GenerateRandomString(5) + "@" + TestBase.GenerateRandomString(5)

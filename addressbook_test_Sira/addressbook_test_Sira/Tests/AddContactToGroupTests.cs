@@ -12,9 +12,17 @@ namespace addressbook_test_Sira
         [Test]
         public void TestAddContactToGroup()
         {
+            app.Contacts.IsContactExist();
+            app.Groups.IsGroupExist();
             GroupData group = GroupData.GetAllFromDB()[0];
             List<ContactData> oldList = group.GetContact();
-            ContactData contact = ContactData.GetAllFromDB().Except(oldList).First();
+            ContactData contact;
+            if (GroupData.GetAllFromDB().Count == oldList.Count)
+            {
+                contact = new ContactData("SSS", "QQQ"); //создем новый контакт, если в группу входят все контакты
+                app.Contacts.Create(contact);
+            }
+            contact = ContactData.GetAllFromDB().Except(oldList).First();
             //действия
             app.Contacts.AddContactToGroup(contact, group);
 
