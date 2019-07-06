@@ -18,12 +18,12 @@ namespace addressbook_test_Sira
             newData.Header = "hli";
             newData.Footer = "hlfgh";
             List<GroupData> oldGroups = GroupData.GetAllFromDB();
-            app.Groups.Modify(oldGroups[8], newData);
+            app.Groups.Modify(oldGroups[0], newData);
             Assert.AreEqual(oldGroups.Count, app.Groups.GetGroupsCount());
             List<GroupData> newGroups = GroupData.GetAllFromDB();
-            oldGroups[8].Name = newData.Name;
-            oldGroups[8].Header = newData.Header;
-            oldGroups[8].Footer = newData.Footer;
+            oldGroups[0].Name = newData.Name;
+            oldGroups[0].Header = newData.Header;
+            oldGroups[0].Footer = newData.Footer;
             //GroupData.GetAllFromDB()[0].Name = newData.Name;
 
             oldGroups.Sort();

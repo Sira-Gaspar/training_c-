@@ -15,11 +15,11 @@ namespace addressbook_test_Sira
         {
             app.Contacts.IsContactExist();
             List<ContactData> oldContacts = ContactData.GetAllFromDB();
-            ContactData toBeRemoved = oldContacts[0];
+            ContactData toBeRemoved = oldContacts[8];
             app.Contacts.Remove(toBeRemoved);
             List<ContactData> newContacts = ContactData.GetAllFromDB();
             Assert.AreEqual(oldContacts.Count - 1, app.Contacts.GetContactsCount());
-            oldContacts.RemoveAt(0);
+            oldContacts.RemoveAt(8);
             //oldContacts.Sort();
             //newContacts.Sort();
             Assert.AreEqual(oldContacts, newContacts);

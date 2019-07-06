@@ -90,8 +90,8 @@ namespace addressbook_test_Sira
             FillContactForm(newData);
             SubmitContactModification();
             manager.Navigator.ReturnToHomePage();
-            new WebDriverWait(driver, TimeSpan.FromSeconds(10))
-                .Until(d => d.FindElements(By.CssSelector("div.msgbox")).Count > 0);
+            //new WebDriverWait(driver, TimeSpan.FromSeconds(10))
+              //  .Until(d => d.FindElements(By.CssSelector("div.msgbox")).Count > 0);
         }
 
         public void Remove(ContactData contact)
