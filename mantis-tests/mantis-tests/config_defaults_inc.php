@@ -3972,5 +3972,9 @@
 	
 	$g_signup_use_captcha	  = OFF;
 	
+	$g_phpMailer_method = PHPMAILER_METHOD_SMTP;
+    $g_smtp_port = '25';
+    $g_smtp_host = 'localhost';
+	
 	# Temporary variables should not remain defined in global scope
 	unset( $t_protocol, $t_host, $t_hosts, $t_port, $t_self, $t_path, $t_use_iis );
