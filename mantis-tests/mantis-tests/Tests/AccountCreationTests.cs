@@ -17,12 +17,11 @@ namespace mantis_tests
         [OneTimeSetUp]
         public void SetUpConfig()
         {
-            app.Ftp.BackupFile("/config_defaults_inc.php");
-            using (Stream localFile = File.Open
-                (TestContext.CurrentContext.TestDirectory + @"\config_defaults_inc.php", 
-                FileMode.Open))
+            app.Ftp.BackupFile("config_defaults_inc.php");
+            using (Stream localFile = File.Open(TestContext.CurrentContext.TestDirectory
+                + @"\config_defaults_inc.php", FileMode.Open))
             {
-                app.Ftp.UploadFile("/config_defaults_inc.php", localFile);
+                app.Ftp.UploadFile("config_defaults_inc.php", localFile);
             }
         }
 
@@ -31,9 +30,9 @@ namespace mantis_tests
         {
             AccountData account = new AccountData()
             {
-                Name = "testuser",
+                Name = "testuser2",
                 Password = "password",
-                Email = "testuser@localhost.localdomain"
+                Email = "testuser2@localhost.localdomain"
             };
 
             app.James.Delete(account);
@@ -45,7 +44,7 @@ namespace mantis_tests
         [OneTimeTearDown]
         public void RestoreConfig()
         {
-            app.Ftp.RestoreBackupFile("/config_defaults_inc.php");
+            app.Ftp.RestoreBackupFile("config_defaults_inc.php");
         }
     }
 }
