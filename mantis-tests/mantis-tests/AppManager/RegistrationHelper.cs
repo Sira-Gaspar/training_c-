@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using OpenQA.Selenium;
 using System.Text.RegularExpressions;
+using OpenQA.Selenium.Support.UI;
 
 namespace mantis_tests
 {
@@ -44,24 +45,23 @@ namespace mantis_tests
 
         private void OpenRegistrationForm()
         {
-            driver.FindElements(By.CssSelector("span.bracket-link"))[0].Click();
+            driver.FindElement(By.XPath("//a[@href='signup_page.php']")).Click();
         }
 
         private void SubmitRegistration()
         {
-            driver.FindElement(By.CssSelector("input.button")).Click();
+            driver.FindElement(By.XPath("//input[@type='submit']")).Click();
         }
 
         private void FillRegistrationForm(AccountData account)
         {
             driver.FindElement(By.Name("username")).SendKeys(account.Name);
             driver.FindElement(By.Name("email")).SendKeys(account.Email);
-            driver.FindElement(By.Name("username")).SendKeys(account.Name);
         }
 
         private void OpenMainPage()
         {
-            manager.Driver.Url = "http://localhost/mantisbt-1.2.17/mantisbt-1.2.17/login_page.php";
+            manager.Driver.Url = "http://localhost/mantisbt-2.21.1/mantisbt-2.21.1/login_page.php";
         }
     }
 }

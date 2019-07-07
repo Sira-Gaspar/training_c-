@@ -45,13 +45,13 @@ namespace mantis_tests
                     //Ignore errors if unable to close the browser
                 }
         }
-
+        
         public static ApplicationManager GetInstance()
         {
             if (! app.IsValueCreated)
             {
                 ApplicationManager newInstance = new ApplicationManager();
-                newInstance.driver.Url = "http://localhost/mantisbt-1.2.17/mantisbt-1.2.17/login_page.php?return=%2Fmantisbt-1.2.17%2Fmantisbt-1.2.17%2Fmy_view_page.php";
+                newInstance.driver.Url = "http://localhost/mantisbt-2.21.1/mantisbt-2.21.1/login_page.php";
                 app.Value = newInstance;
             }
             return app.Value;
