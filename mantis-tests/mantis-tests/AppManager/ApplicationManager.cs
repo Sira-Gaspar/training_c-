@@ -13,13 +13,16 @@ namespace mantis_tests
 {
     public class ApplicationManager
     {
-        protected IWebDriver driver;
+        public IWebDriver driver;
         protected string baseURL;
 
         public RegistrationHelper Registration { get; set; }
         public FTPHelper Ftp { get; set; }
         public JamesHelper James { get; set; }
         public MailHelper Mail { get; set; }
+        public LoginHelper loginHelper;
+        public NavigatorHelper navigator;
+        public ProjectHelper projectHelper;
 
         private static ThreadLocal<ApplicationManager> app = new ThreadLocal<ApplicationManager>();
 
@@ -31,6 +34,9 @@ namespace mantis_tests
             Ftp = new FTPHelper(this);
             James = new JamesHelper(this);
             Mail = new MailHelper(this);
+            projectHelper = new ProjectHelper(this);
+            navigator = new NavigatorHelper(this, baseURL);
+            loginHelper = new LoginHelper(this);
             //driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(3);
         }
 
@@ -60,6 +66,23 @@ namespace mantis_tests
         public IWebDriver Driver
         {
             get { return driver; }
+        }
+
+        public LoginHelper Auth
+        {
+            get
+            {
+                return loginHelper;
+            }
+        }
+
+        public NavigatorHelper Navigator
+        {
+            get { return navigator; }
+        }
+        public ProjectHelper Project
+        {
+            get { return projectHelper; }
         }
     }
 }
